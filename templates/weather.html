@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Home
+{% endblock %}
+
+{% block main %}
+<div class="container py-5">
+  <h2 class="text-center mb-4">Weather Information for {{ info.city }}</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-5">Current Weather</h3>
+          
+          <div class="row">
+            <div class="col-6">
+              <p><strong>Temperature:</strong> {{ info.main.temperature }}°C</p>
+              <p><strong>Feels Like:</strong> {{ info.main.feels_like }}°C</p>
+              <p><strong>Min Temp:</strong> {{ info.main.temp_min }}°C</p>
+              <p><strong>Max Temp:</strong> {{ info.main.temp_max }}°C</p>
+            </div>
+            <div class="col-6">
+              <p class="text-capitalize"><strong>Weather:</strong> {{ info.weather.description }}</p>
+              <p><strong>Wind Speed:</strong> {{ info.wind.speed }} m/s</p>
+              <p><strong>Humidity:</strong> {{ info.main.humidity }}%</p>
+              <p><strong>Pressure:</strong> {{ info.main.pressure }} hPa</p>
+            </div>
+          </div>
+
+          <div class="text-center mt-3">
+            <img src="http://openweathermap.org/img/wn/{{ info.weather.icon }}.png" alt="weather icon">
+            <p>{{ info.weather.main }}</p>
+          </div>
+
+          <p class="mt-5 text-center">
+            <strong>Sunrise:</strong> {{ info.sunrise | datetimeformat }} | <strong>Sunset:</strong> {{ info.sunset | datetimeformat }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

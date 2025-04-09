@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Home
+{% endblock %}
+
+{% block main %}
+<div class="container d-flex justify-content-center align-items-center center">
+  <div class="text-center">
+    <h2 class="mb-4">Find the Weather Forecast</h2>
+    <form action="/" method="POST">
+      <div class="mb-3">
+        <input type="text" class="form-control" name="city" required placeholder="Enter city name">
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% if session["recent_searches"] %}
+  <h3 class="mt-4 mb-5">Recent Searches</h3>
+  <div class="recent-searches d-flex flex-wrap justify-content-center">
+    {% for city in session["recent_searches"] %}
+    <div class="card city mb-2 mx-2" >
+      <div class="card-body">
+        <img src="https://openweathermap.org/img/wn/{{ city.icon }}.png" alt="weather icon" class="weather-icon">
+        <h5 class="card-title">{{ city.city }}, {{ city.country }}</h5>
+        <p class="card-text">{{ city.description }} - {{ city.temperature }}°C</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% endblock %}
